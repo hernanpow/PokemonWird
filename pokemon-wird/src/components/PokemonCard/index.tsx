@@ -11,16 +11,13 @@ import styles from "./styles.module.scss";
 interface Props {
   url: string;
   onAddToBattleTeam: (pokemon: PokemonDetailed) => void;
-  onSelectPokemon: (url: string) => void; // Añade esta línea
+  onSelectPokemon: (url: string) => void;
 }
 
 export const PokemonCard = ({ url, onAddToBattleTeam, onSelectPokemon }: Props) => {
   const dispatch = useDispatch();
-  console.log(url);
   const { pokemon } = usePokemon(url);
-  console.log(pokemon);
 
-  console.log(pokemon);
   /* @ts-ignore */
   const backgroundSelected = background[pokemon?.types[0]?.type?.name];
 
@@ -70,7 +67,13 @@ export const PokemonCard = ({ url, onAddToBattleTeam, onSelectPokemon }: Props) 
       <div style={{ background: backgroundSelected }} className={styles.bottom}>
         {pokemon.name}
       </div>
-      <button onClick={handleAddToBattleTeam}>Add to Battle Team</button>
+      <button 
+        className={styles.addToBattleTeamBtn}
+        onClick={handleAddToBattleTeam}
+        title="Add to Battle Team"
+      >
+        +
+      </button>
     </div>
   );
 };

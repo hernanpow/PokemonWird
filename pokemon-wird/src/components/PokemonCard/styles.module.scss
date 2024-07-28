@@ -7,7 +7,7 @@
     cursor: pointer;
     text-decoration: none;
     color: inherit;
-  
+    position: relative;
     .top {
       display: flex;
       flex-direction: column;
@@ -47,7 +47,7 @@
       text-transform: capitalize;
       color: white;
     }
-  }
+ 
   
   .pokeCard:hover {
     box-shadow: -1px 10px 30px -15px rgba(0, 0, 0, 0.65);
@@ -55,3 +55,72 @@
     -moz-box-shadow: -1px 10px 30px -15px rgba(0, 0, 0, 0.65);
     transition-duration: 0.3s;
   }
+
+    .addToBattleTeamBtn {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: linear-gradient(to bottom, #ff0000 50%, #ffffff 50%);
+      border: 3px solid #000000;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.2s;
+      overflow: hidden;
+      z-index: 1; // Asegura que el botón esté por encima de otros elementos
+
+      &:before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 3px;
+      background-color: #000000;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #ffffff;
+      border: 2px solid #000000;
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+// Estilos para la barra de desplazamiento
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #ffcb05 #f0f0f0;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #f0f0f0;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #ffcb05;
+  border-radius: 20px;
+  border: 2px solid #f0f0f0;
+}
+  
+   

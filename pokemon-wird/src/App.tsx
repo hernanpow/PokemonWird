@@ -10,7 +10,10 @@ import {
   fetchPokemonDetail 
 } from './redux/pokemonSlice';
 import { PokemonList } from './components/PokemonList';
-import { PokemonDetailed } from './interface/interfaces'
+import { PokemonDetail } from './components/PokemonDetail'; // Importa PokemonDetail
+import { PokemonDetailed } from './interface/interfaces';
+import styles from './styles.module.scss'
+import { PokeballIconSmall } from './assets/pokeball';
 
 const App: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -26,7 +29,6 @@ const App: React.FC = () => {
 
   useEffect(() => {
     dispatch(fetchPokemons());
-
   }, [dispatch]);
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,6 +49,7 @@ const App: React.FC = () => {
   const handleBackToList = () => {
     dispatch(setSelectedPokemon(null));
   };
+
   const handleSelectPokemon = (url: string) => {
     dispatch(fetchPokemonDetail(url)).then((action) => {
       if (fetchPokemonDetail.fulfilled.match(action)) {
@@ -63,69 +66,57 @@ const App: React.FC = () => {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <div style={{ display: 'flex', height: '100vh' }}>
-      <div style={{ flex: 1, overflowY: 'auto', padding: '20px' }}>
-        <h1>Pokédex</h1>
+    <div className={styles.home}>
+      <header>
+        <div>
+          <PokeballIconSmall />
+          <span>Pokedex</span>
+        </div>
         <input
           type="text"
           placeholder="Search Pokémon"
           value={searchTerm}
           onChange={handleSearch}
         />
-        {selectedPokemon ? (
-          <div>
-            <h2>{selectedPokemon.name}</h2>
-            <img src={selectedPokemon.sprites?.front_default} alt={selectedPokemon.name} />
-            <p>Height: {selectedPokemon.height}</p>
-            <p>Weight: {selectedPokemon.weight}</p>
-            <p>Types: {selectedPokemon.types?.map(type => type.type.name).join(', ')}</p>
-            <button onClick={handleBackToList}>Back to List</button>
-          </div>
-        ) : (
-          <PokemonList 
-            pokemonsUrls={filteredList.map(pokemon => pokemon.url)}
-            onAddToBattleTeam={handleAddToBattleTeam}
-            onSelectPokemon={handleSelectPokemon} // Añade esta prop
-/>
-        )}
-      </div>
-      <div 
-        style={{ 
-          width: isBattleTeamVisible ? '300px' : '50px', 
-          transition: 'width 0.3s ease-in-out',
-          backgroundColor: '#f0f0f0',
-          overflowX: 'hidden',
-          display: 'flex',
-          flexDirection: 'column'
-        }}
-      >
-        <button 
-          onClick={() => setIsBattleTeamVisible(!isBattleTeamVisible)}
-          style={{ 
-            alignSelf: 'flex-start', 
-            margin: '10px',
-            background: 'none',
-            border: 'none',
-            fontSize: '20px',
-            cursor: 'pointer'
-          }}
+      </header>
+      <div style={{ display: 'flex', height: 'calc(100vh - 80px)' }}>
+        <div style={{ flex: 1, overflowY: 'auto', padding: '20px' }}>
+          {selectedPokemon ? (
+            <PokemonDetail pokemon={selectedPokemon} handleBack={handleBackToList} />
+          ) : (
+            <PokemonList 
+              pokemonsUrls={filteredList.map(pokemon => pokemon.url)}
+              onAddToBattleTeam={handleAddToBattleTeam}
+              onSelectPokemon={handleSelectPokemon} // Añade esta prop
+            />
+          )}
+        </div>
+        <div 
+          className={isBattleTeamVisible ? styles.sideBar : styles.sideBarCollapsed}
         >
-          {isBattleTeamVisible ? '>' : '<'}
-        </button>
-        {isBattleTeamVisible && (
-          <div style={{ padding: '20px' }}>
-            <h2>Battle Team ({battleTeam.length}/6)</h2>
-            {battleTeam.map(pokemon => (
-              <div key={pokemon.id} style={{ marginBottom: '10px' }}>
-                <img src={pokemon.sprites?.front_default} alt={pokemon.name} />
-                <p>{pokemon.name}</p>
-                <button onClick={() => handleRemoveFromBattle(pokemon.id)}>Remove</button>
-              </div>
-            ))}
+          <button 
+            onClick={() => setIsBattleTeamVisible(!isBattleTeamVisible)}
+            className={styles.sideBarButton}
+          >
+            {isBattleTeamVisible ? '>' : '<'}
+          </button>
+          {isBattleTeamVisible && (
+            <div className={styles.sideBarContent}>
+              <h2>Battle Team ({battleTeam.length}/6)</h2>
+              <div className={styles.battleTeam}>
+              {battleTeam.map(pokemon => (
+                <div key={pokemon.id} className={styles.pokemonCard}>
+                  <img src={pokemon.sprites?.front_default} alt={pokemon.name} />
+                  <p>{pokemon.name}</p>
+                  <button onClick={() => handleRemoveFromBattle(pokemon.id)}>Remove</button>
+                </div>
+              ))}
+            </div>
           </div>
         )}
       </div>
     </div>
+  </div>
   );
 };
 
