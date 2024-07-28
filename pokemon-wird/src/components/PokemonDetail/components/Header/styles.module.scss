@@ -7,6 +7,8 @@ header {
     width: 100%;
     padding: 2rem;
     color: white;
+    position: relative;
+    padding: 10px 20px;
   
     .left {
       display: flex;
@@ -26,6 +28,34 @@ header {
         font-weight: bold;
         text-transform: capitalize;
         font-size: 32px;
+      }
+
+      .backArrow {
+        margin-right: 15px;
+        cursor: pointer;
+      }
+    }
+    .right {
+      display: flex;
+      align-items: center;
+  
+      p {
+        margin-right: 15px;
+      }
+    }
+
+    .addToBattleTeamBtn {
+      background: linear-gradient(to bottom, #ff5100f5 50%, #f00a02dc 50%);
+      border: 2px solid #000000;
+      border-radius: 20px;
+      padding: 5px 10px;
+      color: #000000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s;
+  
+      &:hover {
+        transform: scale(1.05);
       }
     }
   

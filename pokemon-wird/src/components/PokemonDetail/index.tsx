@@ -11,10 +11,11 @@ import styles from "./styles.module.scss";
 
 interface Props {
   pokemon: PokemonDetailed | null;
-  handleBack: () => void
+  handleBack: () => void;
+  onAddToBattleTeam : (pokemon : PokemonDetailed) => void
 }
 
-export const PokemonDetail = ({ pokemon , handleBack}: Props) => {
+export const PokemonDetail = ({ pokemon , handleBack,onAddToBattleTeam}: Props) => {
   /* @ts-ignore */
   const backgroundSelected = background[pokemon?.types[0]?.type?.name];
 
@@ -31,7 +32,7 @@ export const PokemonDetail = ({ pokemon , handleBack}: Props) => {
 
   return (
     <div style={{ background: backgroundSelected }} className={styles.bg}>
-      <Header pokemon={pokemon} handleBack={handleBack}/>
+      <Header pokemon={pokemon} handleBack={handleBack} onAddToBattleTeam={() => onAddToBattleTeam(pokemon)}/>
       <div className={styles.info}>
         <img
           src={

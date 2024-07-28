@@ -14,6 +14,7 @@ import { PokemonDetail } from './components/PokemonDetail'; // Importa PokemonDe
 import { PokemonDetailed } from './interface/interfaces';
 import styles from './styles.module.scss'
 import { PokeballIconSmall } from './assets/pokeball';
+import Sidebar from './components/SideBar';
 
 const App: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -82,41 +83,27 @@ const App: React.FC = () => {
       <div style={{ display: 'flex', height: 'calc(100vh - 80px)' }}>
         <div style={{ flex: 1, overflowY: 'auto', padding: '20px' }}>
           {selectedPokemon ? (
-            <PokemonDetail pokemon={selectedPokemon} handleBack={handleBackToList} />
+            <PokemonDetail 
+              pokemon={selectedPokemon} 
+              handleBack={handleBackToList}  
+              onAddToBattleTeam={handleAddToBattleTeam}
+            />
           ) : (
             <PokemonList 
               pokemonsUrls={filteredList.map(pokemon => pokemon.url)}
               onAddToBattleTeam={handleAddToBattleTeam}
-              onSelectPokemon={handleSelectPokemon} // Añade esta prop
+              onSelectPokemon={handleSelectPokemon}
             />
           )}
         </div>
-        <div 
-          className={isBattleTeamVisible ? styles.sideBar : styles.sideBarCollapsed}
-        >
-          <button 
-            onClick={() => setIsBattleTeamVisible(!isBattleTeamVisible)}
-            className={styles.sideBarButton}
-          >
-            {isBattleTeamVisible ? '>' : '<'}
-          </button>
-          {isBattleTeamVisible && (
-            <div className={styles.sideBarContent}>
-              <h2>Battle Team ({battleTeam.length}/6)</h2>
-              <div className={styles.battleTeam}>
-              {battleTeam.map(pokemon => (
-                <div key={pokemon.id} className={styles.pokemonCard}>
-                  <img src={pokemon.sprites?.front_default} alt={pokemon.name} />
-                  <p>{pokemon.name}</p>
-                  <button onClick={() => handleRemoveFromBattle(pokemon.id)}>Remove</button>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
+        <Sidebar 
+          isBattleTeamVisible={isBattleTeamVisible}
+          setIsBattleTeamVisible={setIsBattleTeamVisible}
+          battleTeam={battleTeam}
+          handleRemoveFromBattle={handleRemoveFromBattle}
+        />
       </div>
     </div>
-  </div>
   );
 };
 
