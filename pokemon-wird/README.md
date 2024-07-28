@@ -1,46 +1,74 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# Pokedex /ES
 
-In the project directory, you can run:
+Una Pokedex que usa la API pública [PokeAPI](https://pokeapi.co/) para traer los primeros 151 Pokémones. La aplicación está construida con React, TypeScript y Redux, y el despliegue se realizó en Vercel.
 
-### `npm start`
+Podes probarla https://pokedex-puce-phi.vercel.app/
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Tecnologías Utilizadas
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- **React**: Biblioteca para construir interfaces de usuario.
+- **TypeScript**: Un superconjunto de JavaScript que añade tipos estáticos.
+- **Redux**: Biblioteca para el manejo del estado global de la aplicación.
+- **SCSS**: Preprocesador de CSS para facilitar el manejo de estilos.
+- **Vercel**: Plataforma de despliegue para aplicaciones frontend.
 
-### `npm test`
+## Características
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Visualiza los primeros 151 Pokémones.
+- Información detallada de cada Pokémon.
+- Búsqueda y filtrado de Pokémones.
+- Diseño responsive para dispositivos móviles.
 
-### `npm run build`
+## Instalación
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clona este repositorio:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   ```bash
+   git clone https://github.com/hernanpow/pokedex.git
+2. Navega al directorio del proyecto
+    cd pokemon-wird
+3. Instala las dependencias
+    npm install
+4. Inicia la aplicacion
+    npm start
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+La aplicacion se ejecutara en http://localhost:3000
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# Pokedex/ES
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+A Pokedex that uses the public API [PokeAPI](https://pokeapi.co/) to fetch the first 151 Pokémon. The application is built with React, TypeScript, and Redux, and is deployed on Vercel.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Try it by yourself https://pokedex-puce-phi.vercel.app/
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Technologies Used
 
-## Learn More
+- **React**: Library for building user interfaces.
+- **TypeScript**: A superset of JavaScript that adds static types.
+- **Redux**: Library for managing the global state of the application.
+- **SCSS**: CSS preprocessor to facilitate styling.
+- **Vercel**: Deployment platform for frontend applications.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Features
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- View the first 151 Pokémon.
+- Detailed information about each Pokémon.
+- Search and filter Pokémon.
+- Responsive design for mobile devices.
+
+## Installation
+
+1. Clone this repository:
+
+   ```bash
+   git clone https://github.com/hernanpow/pokedex.git
+2. Navigate to the project directory
+    cd pokemon-wird
+3. Install dependencies
+    npm install
+4. Start the application
+    npm start
+
+this application is will run at http://localhost:3000
