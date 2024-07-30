@@ -37,7 +37,7 @@ Podes probarla https://pokedex-puce-phi.vercel.app/
 La aplicacion se ejecutara en http://localhost:3000
 
 
-# Pokedex/ES
+# Pokedex/EN
 
 A Pokedex that uses the public API [PokeAPI](https://pokeapi.co/) to fetch the first 151 Pokémon. The application is built with React, TypeScript, and Redux, and is deployed on Vercel.
 
